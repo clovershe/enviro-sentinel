@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="物联网环境监测与告警平台" />
+    <title>Northwest IoT Observatory</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <p class="eyebrow">NORTHWEST IOT · LIVE LAB</p>
+          <h1>环境观测站</h1>
+          <p class="subtitle">实时遥测、设备健康与异常告警</p>
+        </div>
+        <div class="connection"><span id="status-dot"></span><span id="status-text">连接中</span></div>
+      </header>
+
+      <main>
+        <section class="metrics-grid">
+          <article class="metric primary">
+            <span class="metric-label">温度</span>
+            <strong><span id="temperature">--</span><small>°C</small></strong>
+            <span class="metric-note">实验室实时读数</span>
+          </article>
+          <article class="metric">
+            <span class="metric-label">湿度</span>
+            <strong><span id="humidity">--</span><small>%</small></strong>
+            <span class="metric-note">舒适区间 40–60%</span>
+          </article>
+          <article class="metric">
+            <span class="metric-label">空气质量</span>
+            <strong><span id="air-quality">--</span><small>AQI</small></strong>
+            <span class="metric-note" id="air-note">等待设备数据</span>
+          </article>
+          <article class="metric">
+            <span class="metric-label">节点电量</span>
+            <strong><span id="battery">--</span><small>%</small></strong>
+            <span class="metric-note" id="signal">信号 -- dBm</span>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel chart-panel">
+            <div class="panel-heading">
+              <div><span class="kicker">趋势</span><h2>最近 60 个采样点</h2></div>
+              <div class="legend"><span></span>温度曲线</div>
+            </div>
+            <canvas id="trend" aria-label="温度趋势图"></canvas>
+          </article>
+
+          <article class="panel alerts-panel">
+            <div class="panel-heading">
+              <div><span class="kicker">事件流</span><h2>告警记录</h2></div>
+              <span class="counter" id="alert-count">0</span>
+            </div>
+            <div id="alerts" class="alerts-list">
+              <div class="empty">暂无告警，设备运行正常</div>
+            </div>
+          </article>
+        </section>
+
+        <section class="device-strip">
+          <div><span>设备</span><strong id="device-id">lab-esp32-01</strong></div>
+          <div><span>最后序列号</span><strong id="sequence">--</strong></div>
+          <div><span>最后上报</span><strong id="last-seen">--</strong></div>
+          <div><span>认证方式</span><strong>HMAC-SHA256</strong></div>
+        </section>
+      </main>
+    </div>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

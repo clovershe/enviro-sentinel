@@ -1,0 +1,35 @@
+services:
+  broker:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./infra/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  api:
+    build: .
+    environment:
+      IOT_DATABASE_PATH: /app/data/iot.db
+      IOT_MQTT_ENABLED: "true"
+      IOT_MQTT_HOST: broker
+      IOT_DEVICE_ID: lab-esp32-01
+      IOT_DEVICE_SECRET: demo-secret-change-me
+    ports:
+      - "8000:8000"
+    volumes:
+      - iot-data:/app/data
+    depends_on:
+      - broker
+
+  simulator:
+    build: .
+    command: ["iot-simulator", "--transport", "mqtt", "--mqtt-host", "broker", "--interval", "2"]
+    environment:
+      IOT_DEVICE_ID: lab-esp32-01
+      IOT_DEVICE_SECRET: demo-secret-change-me
+    depends_on:
+      - broker
+    profiles: ["demo"]
+
+volumes:
+  iot-data:

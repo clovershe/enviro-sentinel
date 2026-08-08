@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+data/
+*.egg-info/
+.env
+.DS_Store
+firmware/esp32/.pio/
+firmware/esp32/include/secrets.h

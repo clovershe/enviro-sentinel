@@ -1,0 +1,38 @@
+name: Bug report
+description: 报告可复现的问题
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: 感谢反馈。请先确认问题可以在最新 main 分支复现。
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 实际发生了什么？你预期发生什么？
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 启动服务……
+        2. 运行模拟器……
+        3. 观察到……
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 环境
+      placeholder: macOS 15 / Python 3.12 / ESP32 DevKit V1
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志
+      description: 请删除密钥、Wi-Fi 密码、Token 等敏感信息。
+      render: shell
