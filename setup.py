@@ -18,7 +18,7 @@ setup(
             "httpx>=0.27,<1",
             "pre-commit>=4,<5",
             "pytest>=8,<9",
-            "pytest-cov>=5,<7",
+            "pytest-cov>=5,<8",
             "ruff>=0.12,<1",
         ]
     },
